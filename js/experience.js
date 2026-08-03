@@ -38,15 +38,13 @@
     return acc.concat(Array.prototype.slice.call(g.children));
   }, []), { autoAlpha: 0, y: 26 });
 
-  /* ── Frame-health failsafe: if the ticker never runs, settle it all ─── */
-  var ticks = 0;
-  gsap.ticker.add(function () { ticks++; });
+  /* ── Failsafe: whatever happens to individual tweens (a ScrollTrigger
+     refresh from a late-loading webfont has been seen to strand a hero
+     tween mid-flight), every reveal is visible by 3s no matter what. ── */
   setTimeout(function () {
-    if (ticks < 10) {
-      document.querySelectorAll('[data-splitted], [data-stagger], .reveal').forEach(function (el) {
-        el.classList.add('settled');
-      });
-    }
+    document.querySelectorAll('[data-splitted], [data-stagger], .reveal').forEach(function (el) {
+      el.classList.add('settled');
+    });
   }, 3000);
 
   /* ── Act I · Arrival: entrance, then scroll clears the morning mist ── */
