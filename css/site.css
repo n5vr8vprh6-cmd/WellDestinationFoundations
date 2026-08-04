@@ -666,6 +666,77 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 @media (max-width: 560px) { .villages { grid-template-columns: 1fr; } }
 .villages .reason h3 { font-size: var(--fs-h4); }
 
+/* the method demonstrated: one enquiry matched through to a sellable journey */
+.matchflow { counter-reset: mf; max-width: 62rem; }
+.matchflow li {
+  display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.4rem);
+  padding: 1.15rem 0; border-top: 1px solid var(--hairline-l);
+}
+.matchflow li:last-child { border-bottom: 1px solid var(--hairline-l); }
+.matchflow-step {
+  counter-increment: mf;
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin: 0;
+}
+.matchflow-step::before { content: counter(mf) " · "; color: var(--muted); }
+.matchflow li > p:not(.matchflow-step) {
+  font-family: var(--sans); font-size: var(--fs-small);
+  color: var(--muted); margin: 0; max-width: 60ch; text-wrap: pretty;
+}
+.matchflow li > p b { color: var(--ivory-ink); font-weight: 600; }
+.matchflow blockquote {
+  margin: 0; font-family: var(--serif); font-size: 1.05rem;
+  line-height: 1.5; color: var(--ivory-ink); max-width: 46ch;
+}
+@media (max-width: 700px) {
+  .matchflow li { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+.framework-download {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem;
+  margin: 2rem 0 0; padding-top: 1.4rem; border-top: 1px solid var(--hairline-l);
+}
+.framework-download a {
+  font-family: var(--sans); font-size: 0.9rem; font-weight: 600;
+  color: var(--gold-deep); flex: none;
+}
+.framework-download span {
+  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
+}
+
+/* how Foundations sits on top of credentials advisors already hold */
+.layers {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+}
+@media (max-width: 820px) { .layers { grid-template-columns: 1fr; } }
+.layers .reason h3 { font-size: var(--fs-h4); margin-bottom: 0.15rem; }
+.layer-tag {
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin: 0 0 0.7rem;
+}
+/* the layer this page is actually selling */
+.layers .layer--this { border-top-color: var(--gold); border-top-width: 2px; }
+
+/* ── Voices (markup lives commented-out in index.html until real quotes) ── */
+.voices {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.6rem, 3vw, 2.6rem); margin-top: 3rem;
+}
+.voice { margin: 0; border-top: 2px solid var(--gold); padding-top: 1.4rem; }
+.voice blockquote {
+  margin: 0 0 1.1rem; font-family: var(--serif);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.5;
+  color: var(--ivory-ink); text-wrap: pretty;
+}
+.voice figcaption {
+  font-family: var(--sans); font-size: 0.82rem; color: var(--muted); line-height: 1.5;
+}
+.voice figcaption b { display: block; color: var(--ivory-ink); font-weight: 600; }
+
 /* Attract · Advise · Activate — the commercial spine (Program section) */
 .triad {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -819,6 +890,9 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   border-top: 1px solid var(--hairline-l);
 }
 @media (max-width: 860px) { .partner-roles { grid-template-columns: 1fr; } }
+.roles--four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1040px) { .roles--four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .roles--four { grid-template-columns: 1fr; } }
 .partner-role h3 {
   font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600;
   color: var(--ivory-ink); margin-bottom: 0.25rem;

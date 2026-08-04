@@ -15,12 +15,22 @@
      done both here (covers click/backdrop close, which call this directly)
      and on the native 'close' event (the only hook the Escape key gives
      us), so neither path depends solely on the other. */
+  function report(event) {
+    if (typeof window.wdfTrack === 'function') window.wdfTrack(event);
+  }
+
   function close() {
     dialog.close();
     document.body.style.overflow = '';
   }
+
+  /* a click through to the Luma briefing also fires webinar_click in
+     analytics.js; this marks it as the exit-intent path specifically */
+  var cta = dialog.querySelector('.btn');
+  if (cta) cta.addEventListener('click', function () { report('exit_intent_converted'); });
   dialog.addEventListener('close', function () {
     document.body.style.overflow = '';
+    report('exit_intent_dismissed');
   });
   dialog.addEventListener('click', function (e) {
     if (e.target === dialog) close();
@@ -71,5 +81,6 @@
     document.removeEventListener('mouseout', maybeShow);
     document.body.style.overflow = 'hidden';
     dialog.showModal();
+    report('exit_intent_shown');
   }
 })();
