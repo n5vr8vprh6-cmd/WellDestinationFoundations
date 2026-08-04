@@ -465,6 +465,21 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 }
 .cred-strip .cred-label { color: var(--gold); }
 
+/* ── Reassurance bar: answers "does this threaten my business?" early ── */
+.assure-bar { background: var(--paper-2); border-bottom: 1px solid var(--hairline-l); }
+.assure-bar ul {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 0.7rem clamp(1.4rem, 3.5vw, 2.8rem); padding-block: 1.1rem;
+}
+.assure-bar li {
+  position: relative; padding-left: 1.35rem;
+  font-family: var(--sans); font-size: 0.82rem; color: var(--muted);
+}
+.assure-bar li::before {
+  content: "✓"; position: absolute; left: 0;
+  color: var(--gold-deep); font-weight: 700;
+}
+
 /* ── Photography (from the Discover Saint Lucia WELL edition) ────────── */
 .photo {
   position: relative; border-radius: 3px; overflow: hidden;
@@ -631,6 +646,26 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .reason p { color: var(--muted); font-family: var(--sans); font-size: var(--fs-small); max-width: 46ch; margin: 0; }
 @media (max-width: 720px) { .why-lucia-grid { grid-template-columns: 1fr; } }
 
+/* ── Framework blocks: the WELL Compass and the Wellness Villages ────── */
+.framework-block { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.framework-head {
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 0.9rem;
+}
+.framework-lead {
+  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
+  max-width: 68ch; margin: 0 0 2rem; text-wrap: pretty;
+}
+.framework-lead em { color: var(--ivory-ink); font-style: italic; }
+.villages {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+}
+@media (max-width: 860px) { .villages { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .villages { grid-template-columns: 1fr; } }
+.villages .reason h3 { font-size: var(--fs-h4); }
+
 /* Attract · Advise · Activate — the commercial spine (Program section) */
 .triad {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -763,6 +798,9 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   text-transform: uppercase; color: var(--mist); text-align: center; padding: 1rem;
 }
 .person .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+/* institutional card: the brand mark stands in for a portrait */
+.person .portrait--mark { background: var(--ink); }
+.person .portrait--mark .ring-mark { opacity: 0.9; }
 .person h3 { font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600; color: var(--ivory-ink); }
 .person .role { font-family: var(--sans); font-size: 0.8rem; color: var(--gold-deep); letter-spacing: 0.08em; margin: 0.25rem 0 0.6rem; }
 .person p { font-family: var(--sans); font-size: 0.86rem; margin: 0; color: var(--muted); }
@@ -770,6 +808,28 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .people-note {
   margin-top: 2.2rem; max-width: 56ch;
   font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); font-style: italic;
+}
+
+/* ── Partner roles: what each institution actually contributes ───────── */
+.partner-roles {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: clamp(2.4rem, 5vw, 3.4rem);
+  border-top: 1px solid var(--hairline-l);
+}
+@media (max-width: 860px) { .partner-roles { grid-template-columns: 1fr; } }
+.partner-role h3 {
+  font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600;
+  color: var(--ivory-ink); margin-bottom: 0.25rem;
+}
+.partner-role-tag {
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin: 0 0 0.7rem;
+}
+.partner-role p:not(.partner-role-tag) {
+  font-family: var(--sans); font-size: 0.86rem; color: var(--muted); margin: 0;
 }
 
 /* ── Who this is for ──────────────────────────────────────────────────── */
@@ -824,43 +884,6 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 }
 .value-stack .item { color: var(--ivory-ink); }
 .value-stack .note { color: var(--muted); white-space: nowrap; }
-.value-stack .value-total { border-bottom: 0; padding-top: 1.15rem; }
-.value-stack .value-total .item { font-weight: 600; }
-.value-stack .value-total .note { color: var(--gold-deep); font-weight: 600; }
-
-.value-highlights li {
-  position: relative; padding: 0.55rem 0 0.55rem 1.6rem;
-  font-family: var(--sans); font-size: var(--fs-small); color: var(--ivory-ink);
-}
-.value-highlights li::before { content: "—"; position: absolute; left: 0; color: var(--gold-deep); }
-
-/* ── Compact disclosure: the itemized dollar breakdown, one click away ── */
-.value-toggle { margin-top: 0.6rem; }
-.value-toggle summary {
-  display: flex; align-items: baseline; gap: 0.75rem;
-  cursor: pointer; list-style: none;
-  padding: 0.8rem 0; border-top: 1px solid var(--hairline-l);
-  font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
-  color: var(--gold-deep); transition: color 0.25s ease;
-}
-.value-toggle summary::-webkit-details-marker { display: none; }
-.value-toggle summary:hover { color: var(--gold); }
-.value-toggle-label { flex: none; }
-.value-toggle-total { margin-left: auto; color: var(--muted); font-weight: 400; font-variant-numeric: tabular-nums; }
-.value-toggle summary::after {
-  content: "+"; font-size: 1.1rem; line-height: 1; flex: none;
-  transition: transform 0.3s var(--ease-out-quint);
-}
-.value-toggle[open] summary::after { transform: rotate(135deg); }
-.value-toggle[open] .value-stack { margin-top: 1.4rem; animation: value-toggle-open 0.42s var(--ease-out-quint) both; }
-@keyframes value-toggle-open {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: none; }
-}
-/* dark-card context (inside .vip-card) */
-.value-toggle--vip summary { color: var(--gold); border-top-color: var(--hairline-d); }
-.value-toggle--vip .value-toggle-total { color: var(--mist); }
-.value-toggle--vip[open] .vip-phases { margin-top: 1.6rem; animation: value-toggle-open 0.42s var(--ease-out-quint) both; }
 
 .invest-card {
   background: var(--ink); color: var(--paper);
@@ -917,10 +940,6 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   font-variant-numeric: tabular-nums;
 }
 .vip-amount small { font-size: 0.32em; font-family: var(--sans); letter-spacing: 0.1em; color: var(--mist); }
-.vip-anchor {
-  display: block; margin-top: 0.5rem;
-  font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--gold);
-}
 .vip-phases {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: clamp(1.4rem, 3vw, 2.6rem);
@@ -937,13 +956,9 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   font-family: var(--sans); font-size: 0.86rem; color: #DCE4E1;
 }
 .vip-phase li:first-child { border-top: 0; }
-.vip-phase li .v { color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; flex: none; }
-.vip-phases-summary {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.4rem, 3vw, 2.6rem);
-}
-.vip-phases-summary p:not(.vip-phase-label) {
-  font-family: var(--sans); font-size: 0.86rem; color: #DCE4E1; margin: 0;
+.vip-note {
+  margin: 1.6rem 0 0; font-family: var(--sans); font-size: 0.8rem;
+  color: var(--mist); font-style: italic;
 }
 .vip-foot {
   display: flex; justify-content: space-between; align-items: center;
@@ -955,7 +970,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 @media (max-width: 720px) {
   .vip-head { flex-direction: column; }
   .vip-price { text-align: left; }
-  .vip-phases, .vip-phases-summary { grid-template-columns: 1fr; gap: 1.4rem; }
+  .vip-phases { grid-template-columns: 1fr; gap: 1.4rem; }
   .vip-foot { flex-direction: column; align-items: stretch; }
   .vip-ctas { flex-direction: column; }
   .vip-ctas .btn { width: 100%; }
