@@ -431,6 +431,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .hero .lead { color: #D5DEDB; margin-bottom: 2.6rem; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.4rem; }
 .hero-note { font-family: var(--sans); font-size: var(--fs-small); color: var(--mist); }
+@media (max-width: 520px) { .hero-ctas .btn { width: 100%; } }
 .hero-note a { color: var(--gold); }
 
 /* the journey line begins here, descending from the ring mark */
@@ -919,6 +920,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   .vip-phases { grid-template-columns: 1fr; gap: 1.4rem; }
   .vip-foot { flex-direction: column; align-items: stretch; }
   .vip-ctas { flex-direction: column; }
+  .vip-ctas .btn { width: 100%; }
 }
 
 /* ── Final-CTA direct-purchase row (both tiers) ───────────────────────── */
