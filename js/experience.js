@@ -31,8 +31,7 @@
   }
 
   /* ── Initial hidden states (inline, so we own them end-to-end) ──────── */
-  var heroWords = gsap.utils.toArray('.hero [data-splitted] .wi');
-  var otherSplits = gsap.utils.toArray('[data-splitted]').filter(function (el) { return !el.closest('.hero'); });
+  var otherSplits = gsap.utils.toArray('[data-splitted]');
   gsap.set('[data-splitted] .wi', { yPercent: 115 });
   gsap.set(gsap.utils.toArray('[data-stagger]').reduce(function (acc, g) {
     return acc.concat(Array.prototype.slice.call(g.children));
@@ -41,19 +40,25 @@
   /* ── Failsafe: whatever happens to individual tweens (a ScrollTrigger
      refresh from a late-loading webfont has been seen to strand a hero
      tween mid-flight), every reveal is visible by 3s no matter what. ── */
+  var heroFadeTargets = '.hero .lead, .hero-ctas, .hero-note, .hero-journeyline';
   setTimeout(function () {
     document.querySelectorAll('[data-splitted], [data-stagger], .reveal').forEach(function (el) {
       el.classList.add('settled');
     });
+    gsap.set(heroFadeTargets, { autoAlpha: 1, y: 0 });
   }, 3000);
 
-  /* ── Act I · Arrival: entrance, then scroll clears the morning mist ── */
+  /* ── Act I · Arrival: entrance, then scroll clears the morning mist ──
+     The headline itself stays un-animated: it sits inside the pinned hero
+     timeline, and an entrance tween there has been seen to get stranded
+     mid-flight (same class of race as the failsafe above guards against),
+     which is worse for the page's single most important line than just
+     rendering it immediately. */
   var setSun = (window.WDF_ATMOS && window.WDF_ATMOS.setSun) || function () {};
   var sun = { level: 0.08 };
   setSun(sun.level);
 
-  gsap.to(heroWords, { yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.055, delay: 0.2 });
-  gsap.from('.hero .lead, .hero-ctas, .hero-note, .hero-journeyline', {
+  gsap.from(heroFadeTargets, {
     y: 26, autoAlpha: 0, duration: 1.0, ease: 'power3.out', stagger: 0.09, delay: 0.55
   });
 

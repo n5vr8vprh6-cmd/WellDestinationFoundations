@@ -14,7 +14,7 @@
   var gsapMode = window.__WDF_MODE === 'gsap';
 
   /* ── 1 · Split headlines into masked words ─────────────────────────── */
-  var splitTargets = document.querySelectorAll('.hero h1, .section-head h2, .final-cta h2');
+  var splitTargets = document.querySelectorAll('.section-head h2, .final-cta h2');
   splitTargets.forEach(function (el) {
     var idx = 0;
     function splitNode(node) {
