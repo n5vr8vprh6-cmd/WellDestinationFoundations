@@ -1144,15 +1144,13 @@ input.shake { animation: field-shake 0.4s var(--ease-out-quint); }
   display: grid; grid-template-columns: minmax(0, 5fr) repeat(2, minmax(0, 3fr));
   gap: clamp(2rem, 5vw, 4rem); margin-bottom: 3rem;
 }
-.footer-brand { display: flex; align-items: flex-start; gap: 1rem; }
-.footer-brand .ring-mark { margin-top: 0.1rem; }
-.footer-brand .wordmark { line-height: 30px; } /* optically centers against the 30px ring */
+.footer-brand-mark { display: flex; align-items: center; gap: 1rem; }
 .footer-brand .wordmark {
-  font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper);
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 600; margin: 0;
+  line-height: 1.5; letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper);
 }
 .footer-brand .wordmark b { color: var(--gold); }
-.footer-brand p { font-family: var(--sans); font-size: 0.82rem; margin: 0.7rem 0 0; max-width: 34ch; }
+.footer-brand > p { font-family: var(--sans); font-size: 0.82rem; margin: 0.7rem 0 0; max-width: 34ch; }
 .footer-col h3 {
   font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
   letter-spacing: var(--track-label); text-transform: uppercase;
