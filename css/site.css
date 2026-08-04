@@ -701,7 +701,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   background: #FFFFFF;
   border: 1px solid var(--hairline-l); border-radius: 3px;
   padding: clamp(1.8rem, 4vw, 2.8rem);
-  box-shadow: 0 18px 40px rgba(19, 50, 57, 0.06);
+  box-shadow: 0 4px 12px rgba(19, 50, 57, 0.06);
 }
 .day-label { border-right: 1px solid var(--hairline-l); padding-right: 1.5rem; }
 .day-label .n {
@@ -734,19 +734,12 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.45s ease, border-color 0.45s ease;
 }
-/* calm hover: gentle lift + a gold accent that draws down the left edge */
-.bonus::before {
-  content: ""; position: absolute; left: -1px; top: 12%; bottom: 12%; width: 2px;
-  background: var(--gold);
-  transform: scaleY(0); transform-origin: top center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
+/* calm hover: gentle lift, no shadow bloom */
 .bonus:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 34px rgba(19, 50, 57, 0.10);
+  box-shadow: 0 6px 14px rgba(19, 50, 57, 0.08);
   border-color: rgba(176, 126, 36, 0.35);
 }
-.bonus:hover::before { transform: scaleY(1); }
 .bonus h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin-bottom: 0.45rem; }
 .bonus p { font-family: var(--sans); font-size: 0.86rem; color: var(--muted); margin: 0; }
 @media (max-width: 900px) { .bonus-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -776,8 +769,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 @media (max-width: 800px) { .people { grid-template-columns: 1fr; max-width: 26rem; } }
 .people-note {
   margin-top: 2.2rem; max-width: 56ch;
-  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
-  border-left: 2px solid var(--gold); padding-left: 1.1rem;
+  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); font-style: italic;
 }
 
 /* ── Who this is for ──────────────────────────────────────────────────── */
@@ -866,7 +858,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   border: 1px solid rgba(217, 160, 60, 0.34);
   border-radius: 4px; color: var(--paper);
   padding: clamp(2rem, 4vw, 3.2rem);
-  box-shadow: 0 30px 70px rgba(19, 50, 57, 0.26);
+  box-shadow: 0 8px 24px rgba(19, 50, 57, 0.2);
 }
 .vip-head {
   display: flex; justify-content: space-between; align-items: flex-start;
