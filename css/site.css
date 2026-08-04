@@ -1171,3 +1171,34 @@ input.shake { animation: field-shake 0.4s var(--ease-out-quint); }
 }
 .footer-base .coords { letter-spacing: 0.3em; color: var(--gold); }
 @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ── Exit-intent webinar popup ───────────────────────────────────────── */
+.exit-modal {
+  border: 1px solid rgba(217, 160, 60, 0.34); border-radius: 4px;
+  background: linear-gradient(158deg, #16241F 0%, var(--charcoal) 62%);
+  color: var(--paper); padding: clamp(2rem, 4vw, 2.8rem);
+  max-width: 30rem; width: calc(100% - 2.5rem);
+  box-shadow: 0 8px 24px rgba(19, 50, 57, 0.2);
+}
+.exit-modal::backdrop { background: rgba(10, 20, 20, 0.6); backdrop-filter: blur(2px); }
+.exit-modal[open] { animation: exit-modal-in 0.4s var(--ease-out-quint) both; }
+.exit-modal[open]::backdrop { animation: exit-modal-backdrop-in 0.4s ease both; }
+@keyframes exit-modal-in { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes exit-modal-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+.exit-modal .eyebrow--gold { margin-bottom: 0.9rem; }
+.exit-modal h2 { font-size: var(--fs-h3); color: var(--paper); margin-bottom: 0.8rem; }
+.exit-modal > p:not(.eyebrow) { font-family: var(--sans); font-size: var(--fs-small); color: var(--mist); margin-bottom: 1.7rem; }
+.exit-modal .btn { width: 100%; }
+.exit-modal-close {
+  position: absolute; top: 0.9rem; right: 0.9rem;
+  width: 2rem; height: 2rem; border-radius: 50%; border: 0;
+  background: transparent; color: var(--mist); font-size: 1.3rem; line-height: 1;
+  cursor: pointer; transition: color 0.2s ease, background 0.2s ease;
+}
+.exit-modal-close:hover { color: var(--paper); background: rgba(251, 248, 241, 0.08); }
+.exit-modal-dismiss {
+  display: block; margin: 0.9rem auto 0; padding: 0.3rem;
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--sans); font-size: 0.8rem; color: var(--mist); text-decoration: underline;
+}
+.exit-modal-dismiss:hover { color: var(--paper); }

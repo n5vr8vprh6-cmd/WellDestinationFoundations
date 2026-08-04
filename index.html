@@ -811,6 +811,16 @@
   </div>
 </footer>
 
+<!-- ═══════════════ EXIT-INTENT WEBINAR POPUP ═══════════════ -->
+<dialog class="exit-modal" id="exit-modal" aria-labelledby="exit-modal-title">
+  <button class="exit-modal-close" type="button" aria-label="Close">&times;</button>
+  <p class="eyebrow eyebrow--gold">Free Webinar</p>
+  <h2 id="exit-modal-title">Wondering if you’re ready?</h2>
+  <p>Most advisors who take this webinar aren’t sure either — that’s exactly why it exists. See how the specialty works before you commit to anything.</p>
+  <a class="btn btn--gold" href="https://luma.com/s9th4gfr" target="_blank" rel="noopener">Save my seat</a>
+  <button class="exit-modal-dismiss" type="button">No thanks</button>
+</dialog>
+
 <!-- Animation stack: GSAP + ScrollTrigger + Lenis. If any fail to load,
      site.js falls back to the IntersectionObserver reveal system. -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
@@ -821,5 +831,6 @@
 <script src="js/atmosphere.js" defer></script>
 <script src="js/hero-video.js" defer></script>
 <script src="js/experience.js" defer></script>
+<script src="js/exit-intent.js" defer></script>
 </body>
 </html>
