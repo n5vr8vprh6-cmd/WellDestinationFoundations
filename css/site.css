@@ -706,6 +706,35 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
 }
 
+/* ── Founding property showcase: the framework made concrete ─────────── */
+.showcase {
+  background: var(--paper); border: 1px solid var(--hairline-l);
+  border-radius: 3px; padding: clamp(1.8rem, 4vw, 3rem); margin-top: 3rem;
+}
+.showcase-head { padding-bottom: 1.4rem; border-bottom: 1px solid var(--hairline-l); }
+.showcase-head h3 { font-size: var(--fs-h3); color: var(--ivory-ink); }
+.showcase-head h3 span { color: var(--gold-deep); font-style: italic; }
+.showcase-loc {
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin: 0.4rem 0 0;
+}
+.showcase-list {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0 clamp(1.6rem, 4vw, 3rem); margin-top: 1.6rem;
+}
+@media (max-width: 760px) { .showcase-list { grid-template-columns: 1fr; } }
+.showcase-list li {
+  position: relative; padding: 0.75rem 0 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--hairline-l);
+  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
+}
+.showcase-list li::before { content: "—"; position: absolute; left: 0; color: var(--gold-deep); }
+.showcase-status {
+  margin: 1.6rem 0 0; font-family: var(--sans); font-size: 0.8rem;
+  color: var(--muted); font-style: italic; max-width: 68ch;
+}
+
 /* how Foundations sits on top of credentials advisors already hold */
 .layers {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -875,7 +904,36 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .person h3 { font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600; color: var(--ivory-ink); }
 .person .role { font-family: var(--sans); font-size: 0.8rem; color: var(--gold-deep); letter-spacing: 0.08em; margin: 0.25rem 0 0.6rem; }
 .person p { font-family: var(--sans); font-size: 0.86rem; margin: 0; color: var(--muted); }
+.person .affil {
+  font-family: var(--sans); font-size: 0.78rem; color: var(--muted);
+  margin: -0.35rem 0 0.7rem;
+}
 @media (max-width: 800px) { .people { grid-template-columns: 1fr; max-width: 26rem; } }
+/* four named faculty: destination sales, industry, journey design, wellness */
+.people--four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1040px) { .people--four { grid-template-columns: repeat(2, 1fr); max-width: none; } }
+@media (max-width: 640px) { .people--four { grid-template-columns: 1fr; max-width: 26rem; } }
+
+/* Giselle: named participation, deliberately not presented as faculty */
+.strategic-partner {
+  display: flex; align-items: flex-start; gap: 1.1rem;
+  margin-top: clamp(2rem, 4vw, 3rem); padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline-l); max-width: 68ch;
+}
+.strategic-partner-avatar {
+  width: 64px; height: 64px; flex: none; border-radius: 50%;
+  object-fit: cover; object-position: 50% 20%;
+  border: 1px solid var(--hairline-l);
+}
+.strategic-partner-tag {
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep); margin: 0 0 0.5rem;
+}
+.strategic-partner p:not(.strategic-partner-tag) {
+  font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); margin: 0;
+}
+.strategic-partner b { color: var(--ivory-ink); font-weight: 600; }
 .people-note {
   margin-top: 2.2rem; max-width: 56ch;
   font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); font-style: italic;
