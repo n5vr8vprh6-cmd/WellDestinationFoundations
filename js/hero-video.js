@@ -17,6 +17,15 @@
 
   if (reduced || automated || frugal) return; /* the stills are the whole experience */
 
+  /* The hero loop is ~4MB. On a phone the ambient motion is barely legible and
+     the cost is real, so narrow viewports keep the poster. Same principle the
+     Save-Data / 2G check above already applies, just one condition wider. */
+  var narrow = window.matchMedia('(max-width: 820px)').matches;
+  if (narrow) {
+    videos = videos.filter(function (v) { return !v.classList.contains('hero-video'); });
+    if (!videos.length) return;
+  }
+
   function arm(video) {
     if (video.__armed) return;
     video.__armed = true;

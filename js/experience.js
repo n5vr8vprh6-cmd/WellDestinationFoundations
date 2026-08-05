@@ -155,6 +155,27 @@
     });
   }
 
+  /* ── The method draws itself too ─────────────────────────────────────
+     Same mechanic as the pathway above, on the one other block whose
+     content is genuinely a sequence: an enquiry carried step by step to a
+     quotable journey. Reusing --jp keeps it one motion system, not a new
+     effect. Non-gsap modes get the fully-drawn line via the CSS default. */
+  var flow = document.querySelector('.matchflow');
+  if (flow) {
+    gsap.set(flow, { '--jp': 0 });
+    gsap.to(flow, {
+      '--jp': 1, ease: 'none',
+      scrollTrigger: { trigger: flow, start: 'top 80%', end: 'bottom 60%', scrub: 0.3 }
+    });
+    flow.querySelectorAll('li').forEach(function (li) {
+      ScrollTrigger.create({
+        trigger: li, start: 'top 76%',
+        onEnter: function () { li.classList.add('lit'); },
+        onLeaveBack: function () { li.classList.remove('lit'); }
+      });
+    });
+  }
+
   /* ── Keep measurements honest once webfonts land ────────────────────── */
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () { ScrollTrigger.refresh(); });

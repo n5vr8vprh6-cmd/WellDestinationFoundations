@@ -680,13 +680,37 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .villages .reason h3 { font-size: var(--fs-h4); }
 
 /* the method demonstrated: one enquiry matched through to a sellable journey */
-.matchflow { counter-reset: mf; max-width: 62rem; }
+.matchflow { counter-reset: mf; max-width: 62rem; position: relative; }
+/* the step markers sit on a line that draws itself as the sequence is read
+   — same --jp mechanic as .journey, so it reads as one motion system */
+.matchflow::after,
+.matchflow::before {
+  content: ""; position: absolute; left: 0.32rem; top: 1.7rem; bottom: 1.7rem; width: 1px;
+}
+.matchflow::after { background: rgba(19, 50, 57, 0.16); }
+.matchflow::before {
+  z-index: 1;
+  background: linear-gradient(180deg, var(--gold) 0%, rgba(217, 160, 60, 0.45) 100%);
+  transform: scaleY(var(--jp, 1)); transform-origin: top center;
+}
 .matchflow li {
+  position: relative;
   display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
   gap: clamp(1rem, 3vw, 2.4rem);
-  padding: 1.15rem 0; border-top: 1px solid var(--hairline-l);
+  padding: 1.15rem 0 1.15rem 1.6rem; border-top: 1px solid var(--hairline-l);
 }
 .matchflow li:last-child { border-bottom: 1px solid var(--hairline-l); }
+/* the dot that lights as each step is reached */
+.matchflow li::before {
+  content: ""; position: absolute; left: 0; top: 1.55rem; z-index: 2;
+  width: 0.68rem; height: 0.68rem; border-radius: 50%;
+  background: var(--paper); border: 1px solid var(--gold-deep);
+  transition: background 0.45s ease, box-shadow 0.45s ease;
+}
+.js .matchflow li.lit::before {
+  background: var(--gold); box-shadow: 0 0 14px rgba(217, 160, 60, 0.45);
+}
+@media (max-width: 700px) { .matchflow::after, .matchflow::before { display: none; } }
 .matchflow-step {
   counter-increment: mf;
   font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
@@ -704,7 +728,8 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   line-height: 1.5; color: var(--ivory-ink); max-width: 46ch;
 }
 @media (max-width: 700px) {
-  .matchflow li { grid-template-columns: 1fr; gap: 0.5rem; }
+  .matchflow li { grid-template-columns: 1fr; gap: 0.5rem; padding-left: 0; }
+  .matchflow li::before { display: none; }
 }
 
 .framework-download {
@@ -783,7 +808,16 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .showcase {
   background: var(--paper); border: 1px solid var(--hairline-l);
   border-radius: 3px; padding: clamp(1.8rem, 4vw, 3rem); margin-top: 3rem;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(1.8rem, 4vw, 3rem); align-items: start;
 }
+@media (max-width: 860px) { .showcase { grid-template-columns: 1fr; } }
+/* proof imagery: one tall frame plus two stacked, all from the client guide */
+.showcase-media { margin: 0; display: grid; gap: 0.7rem; }
+.showcase-media img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+.showcase-media > picture:first-child img { aspect-ratio: 4 / 5; }
+.showcase-media-side { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.showcase-media-side img { aspect-ratio: 3 / 2; }
 .showcase-head { padding-bottom: 1.4rem; border-bottom: 1px solid var(--hairline-l); }
 .showcase-head h3 { font-size: var(--fs-h3); color: var(--ivory-ink); }
 .showcase-head h3 span { color: var(--gold-deep); font-style: italic; }
@@ -792,11 +826,8 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   letter-spacing: var(--track-label); text-transform: uppercase;
   color: var(--gold-deep); margin: 0.4rem 0 0;
 }
-.showcase-list {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 0 clamp(1.6rem, 4vw, 3rem); margin-top: 1.6rem;
-}
-@media (max-width: 760px) { .showcase-list { grid-template-columns: 1fr; } }
+/* single column now that the list shares the row with the imagery */
+.showcase-list { display: grid; grid-template-columns: 1fr; margin-top: 1.5rem; }
 .showcase-list li {
   position: relative; padding: 0.75rem 0 0.75rem 1.5rem;
   border-bottom: 1px solid var(--hairline-l);
@@ -1129,7 +1160,9 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   border: 1px solid rgba(217, 160, 60, 0.34);
   border-radius: 4px; color: var(--paper);
   padding: clamp(2rem, 4vw, 3.2rem);
-  box-shadow: 0 8px 24px rgba(19, 50, 57, 0.2);
+  /* the gold hairline carries the premium signal; a wide blur on top of it
+     is the "ghost card" tell, so the lift stays tight */
+  box-shadow: 0 4px 8px rgba(19, 50, 57, 0.18);
 }
 .vip-head {
   display: flex; justify-content: space-between; align-items: flex-start;
@@ -1400,7 +1433,8 @@ input.shake { animation: field-shake 0.4s var(--ease-out-quint); }
   background: linear-gradient(158deg, #16241F 0%, var(--charcoal) 62%);
   color: var(--paper); padding: clamp(2rem, 4vw, 2.8rem);
   max-width: 30rem; width: calc(100% - 2.5rem);
-  box-shadow: 0 8px 24px rgba(19, 50, 57, 0.2);
+  /* the blurred ::backdrop already separates this from the page */
+  box-shadow: 0 4px 8px rgba(10, 20, 20, 0.4);
 }
 .exit-modal::backdrop { background: rgba(10, 20, 20, 0.6); backdrop-filter: blur(2px); }
 .exit-modal[open] { animation: exit-modal-in 0.4s var(--ease-out-quint) both; }
