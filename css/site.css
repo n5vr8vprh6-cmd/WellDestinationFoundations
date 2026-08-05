@@ -479,6 +479,19 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   content: "✓"; position: absolute; left: 0;
   color: var(--gold-deep); font-weight: 700;
 }
+/* the payoff strip that replaced the three-column Outcomes section */
+.assure-bar--outcomes {
+  background: var(--paper); border-top: 1px solid var(--hairline-l);
+}
+.assure-bar--outcomes .wrap { padding-block: clamp(1.6rem, 3vw, 2.2rem); }
+.assure-bar-label {
+  margin: 0 0 0.9rem; text-align: center;
+  font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.assure-bar--outcomes ul { padding-block: 0; }
+.assure-bar--outcomes li { color: var(--ivory-ink); font-size: 0.9rem; }
 
 /* ── Photography (from the Discover Saint Lucia WELL edition) ────────── */
 .photo {
@@ -706,6 +719,66 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   font-family: var(--sans); font-size: var(--fs-small); color: var(--muted);
 }
 
+/* ── Dark "chapter" sections: the property proof and the faculty ──────
+   Two sections are promoted to .section--ink so the page reads as chapters
+   rather than one continuous scroll. These override the light-surface
+   tokens the components normally use. ── */
+.section--ink .showcase {
+  background: rgba(251, 248, 241, 0.04);
+  border-color: var(--hairline-d);
+}
+.section--ink .showcase-head { border-bottom-color: var(--hairline-d); }
+.section--ink .showcase-head h3 { color: var(--paper); }
+.section--ink .showcase-head h3 span,
+.section--ink .showcase-loc { color: var(--gold); }
+.section--ink .showcase-list li {
+  color: #DCE4E1; border-bottom-color: var(--hairline-d);
+}
+.section--ink .showcase-list li::before { color: var(--gold); }
+.section--ink .showcase-status { color: var(--mist); }
+
+.section--ink .person h3 { color: var(--paper); }
+.section--ink .person .role { color: var(--gold); }
+.section--ink .person .affil,
+.section--ink .person p,
+.section--ink .people-note { color: var(--mist); }
+.section--ink .person .portrait { border-color: var(--hairline-d); }
+.section--ink .strategic-partner { border-top-color: var(--hairline-d); }
+.section--ink .strategic-partner-tag { color: var(--gold); }
+.section--ink .strategic-partner p:not(.strategic-partner-tag) { color: var(--mist); }
+.section--ink .strategic-partner b { color: var(--paper); }
+.section--ink .strategic-partner-avatar { border-color: var(--hairline-d); }
+
+/* single-line institutional attribution (replaced three repeated cards) */
+.partner-attrib {
+  margin-top: clamp(2rem, 4vw, 2.8rem); padding-top: 1.4rem;
+  border-top: 1px solid var(--hairline-d);
+  font-family: var(--sans); font-size: 0.82rem; color: var(--mist);
+  line-height: 1.7;
+}
+.partner-attrib b { color: var(--paper); font-weight: 600; }
+
+/* host-protection line under the role map */
+.role-reassure {
+  margin: clamp(1.8rem, 3vw, 2.4rem) 0 0; padding-top: 1.3rem;
+  border-top: 1px solid var(--hairline-l);
+  font-family: var(--sans); font-size: 0.84rem; color: var(--muted);
+}
+
+/* qualified secondary fit-call link inside "A note on fit" */
+.fit-call { margin: 1.2rem 0 0; padding-top: 1rem; border-top: 1px solid var(--hairline-l); }
+.fit-call a {
+  display: block; font-family: var(--sans); font-size: 0.86rem;
+  font-weight: 600; color: var(--gold-deep);
+}
+.fit-call span {
+  display: block; margin-top: 0.3rem;
+  font-family: var(--sans); font-size: 0.76rem; color: var(--muted);
+}
+
+/* the layer this page sells gets a filled surface, not just a gold rule */
+.layers .layer--this { background: var(--paper); padding: 1.4rem 1.4rem 1.5rem; margin-top: -1.4rem; }
+
 /* ── Founding property showcase: the framework made concrete ─────────── */
 .showcase {
   background: var(--paper); border: 1px solid var(--hairline-l);
@@ -738,14 +811,16 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 /* how Foundations sits on top of credentials advisors already hold */
 .layers {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.6rem, 3vw, 2.6rem);
+  gap: clamp(1.8rem, 3.5vw, 2.8rem);
 }
 @media (max-width: 820px) { .layers { grid-template-columns: 1fr; } }
-.layers .reason h3 { font-size: var(--fs-h4); margin-bottom: 0.15rem; }
-.layer-tag {
+.layers .reason h3 { font-size: var(--fs-h4); margin-bottom: 0.55rem; }
+/* .layers .layer-tag, not .layer-tag: `.reason p` (0-1-1) would otherwise
+   out-specify a bare class and zero out the margin. Recurring trap here. */
+.layers .layer-tag {
   font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
   letter-spacing: var(--track-label); text-transform: uppercase;
-  color: var(--gold-deep); margin: 0 0 0.7rem;
+  color: var(--gold-deep); margin: 0 0 0.95rem;
 }
 /* the layer this page is actually selling */
 .layers .layer--this { border-top-color: var(--gold); border-top-width: 2px; }
@@ -906,7 +981,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .person p { font-family: var(--sans); font-size: 0.86rem; margin: 0; color: var(--muted); }
 .person .affil {
   font-family: var(--sans); font-size: 0.78rem; color: var(--muted);
-  margin: -0.35rem 0 0.7rem;
+  margin: 0.15rem 0 0.8rem;
 }
 @media (max-width: 800px) { .people { grid-template-columns: 1fr; max-width: 26rem; } }
 /* four named faculty: destination sales, industry, journey design, wellness */
@@ -948,17 +1023,17 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   border-top: 1px solid var(--hairline-l);
 }
 @media (max-width: 860px) { .partner-roles { grid-template-columns: 1fr; } }
-.roles--four { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 1040px) { .roles--four { grid-template-columns: repeat(2, 1fr); } }
+.roles--four { grid-template-columns: repeat(2, 1fr); }
+
 @media (max-width: 640px) { .roles--four { grid-template-columns: 1fr; } }
 .partner-role h3 {
   font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600;
-  color: var(--ivory-ink); margin-bottom: 0.25rem;
+  color: var(--ivory-ink); margin-bottom: 0.55rem;
 }
 .partner-role-tag {
   font-family: var(--sans); font-size: var(--fs-label); font-weight: 600;
   letter-spacing: var(--track-label); text-transform: uppercase;
-  color: var(--gold-deep); margin: 0 0 0.7rem;
+  color: var(--gold-deep); margin: 0 0 0.95rem;
 }
 .partner-role p:not(.partner-role-tag) {
   font-family: var(--sans); font-size: 0.86rem; color: var(--muted); margin: 0;
