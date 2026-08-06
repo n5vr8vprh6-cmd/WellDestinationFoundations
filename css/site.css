@@ -499,7 +499,11 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
   min-height: clamp(260px, 46vw, 520px);
   display: flex; align-items: flex-end;
 }
-.photo > img {
+/* Descendant, not direct-child. The picture wrapper added for WebP sits
+   between .photo and the image, so a direct-child selector here silently
+   stopped matching and the frames showed their fallback gradient instead of
+   the photograph. Any rule targeting the image must stay descendant-scoped. */
+.photo img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover;
 }
