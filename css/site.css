@@ -467,10 +467,37 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 
 /* ── Reassurance bar: answers "does this threaten my business?" early ── */
 .assure-bar { background: var(--paper-2); border-bottom: 1px solid var(--hairline-l); }
+/* Wider than the 1180 body measure. This is a centred utility strip, not
+   running text, so it isn't bound by the reading width — and the extra
+   100px is what lets four claims hold one line at every desktop size
+   rather than only at the one width they happened to be tuned for. */
+.assure-bar .wrap { max-width: 1280px; }
 .assure-bar ul {
   display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 0.7rem clamp(1.4rem, 3.5vw, 2.8rem); padding-block: 1.1rem;
+  gap: 0.7rem clamp(1.4rem, 2.6vw, 2.4rem); padding-block: 1.1rem;
 }
+/* Four claims fit one line on a wide desktop. Below that they wrap, and a
+   flex wrap leaves 3 + 1 — an orphan that reads as a mistake. Pair them
+   into a deliberate 2 x 2 instead, then stack on narrow phones. */
+@media (max-width: 1180px) {
+  .assure-bar:not(.assure-bar--outcomes) ul {
+    display: grid; grid-template-columns: repeat(2, auto);
+    justify-content: center; justify-items: start;
+  }
+}
+@media (max-width: 620px) {
+  .assure-bar:not(.assure-bar--outcomes) ul { grid-template-columns: auto; }
+}
+/* Same reasoning, five items instead of four: flex-wrap strands one on its
+   own row (4 + 1), so pair them 3 + 2 and then stack. */
+@media (max-width: 1180px) {
+  .assure-bar--outcomes ul {
+    display: grid; grid-template-columns: repeat(3, auto);
+    justify-content: center; justify-items: start;
+  }
+}
+@media (max-width: 760px) { .assure-bar--outcomes ul { grid-template-columns: repeat(2, auto); } }
+@media (max-width: 520px) { .assure-bar--outcomes ul { grid-template-columns: auto; } }
 .assure-bar li {
   position: relative; padding-left: 1.35rem;
   font-family: var(--sans); font-size: 0.82rem; color: var(--muted);
@@ -699,7 +726,10 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 }
 .matchflow li {
   position: relative;
-  display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  /* 17rem, not 13: the label column has to hold "Villages that answer it"
+     and "Foundation property" on one line, or the step labels wrap and the
+     numbered sequence stops scanning as a column. */
+  display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
   gap: clamp(1rem, 3vw, 2.4rem);
   padding: 1.15rem 0 1.15rem 1.6rem; border-top: 1px solid var(--hairline-l);
 }
@@ -1045,7 +1075,7 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 }
 .strategic-partner b { color: var(--ivory-ink); font-weight: 600; }
 .people-note {
-  margin-top: 2.2rem; max-width: 56ch;
+  margin-top: 2.2rem; max-width: 74ch;
   font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); font-style: italic;
 }
 
@@ -1090,6 +1120,14 @@ body.js:not(.loaded) .hero [data-splitted].in .wi { transform: translateY(112%);
 .not-for {
   background: var(--paper-2); border-radius: 3px;
   padding: clamp(1.6rem, 3vw, 2.4rem); align-self: start;
+}
+/* Both columns start at the same y, but the box's padding pushes its
+   heading ~22px below the first list row, so the two columns read as
+   misaligned. Lift the box by the difference between its own top padding
+   and the list row's, so the first line of each column sits on the same
+   optical line. Only while they are side by side. */
+@media (min-width: 821px) {
+  .not-for { margin-top: calc(1.05rem - clamp(1.6rem, 3vw, 2.4rem)); }
 }
 .not-for h3 { font-size: var(--fs-h4); font-family: var(--sans); font-weight: 600; margin-bottom: 0.9rem; }
 .not-for p { font-family: var(--sans); font-size: var(--fs-small); color: var(--muted); margin-bottom: 0.7em; }
