@@ -22,7 +22,11 @@
   --paper:      #FBF8F1;   /* ivory paper — editorial sections */
   --paper-2:    #F3EDE0;   /* warm sand — cards on paper */
   --ivory-ink:  #1C2B29;   /* body ink on paper */
-  --muted:      #5E7378;   /* secondary text on paper */
+  --muted:      #586C71;   /* secondary text on paper AND sand; was #5E7378,
+                              which cleared AA on paper (4.71) but missed it on
+                              sand (4.29). Now 5.19 / 4.72, matching the value
+                              discoversaintluciawell.com already ships in tokens.css. Same discipline the
+                              --gold-deep note below already records. */
   --mist:       #B9C6C4;   /* secondary text on dark */
   --hairline-d: rgba(251, 248, 241, 0.16);  /* hairline on dark */
   --hairline-l: rgba(28, 43, 41, 0.16);     /* hairline on light */
